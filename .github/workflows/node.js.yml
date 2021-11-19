@@ -26,6 +26,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    - run: cd client\package-lock.json
+           npm ci
+    - run: cd client\package-lock.json
+           npm run build --if-present
+    - run: cd client\package-lock.json
+           npm test
