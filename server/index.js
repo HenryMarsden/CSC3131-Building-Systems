@@ -7,12 +7,13 @@ import userRoutes from "./routes/user.js";
 
 const app = express();
 
-app.use("/user", userRoutes);
-
-app.use(bodyParser.json({limit: "20mb", extended:true}));
-app.use(bodyParser.urlencoded({limit: "20mb", extended:true}));
-
 app.use(cors());
+
+app.use(express.json({limit: "20mb", extended:true}));
+app.use(express.urlencoded({limit: "20mb", extended:true}));
+
+app.use("/users", userRoutes);
+
 
 const CONNECTION_URL = "mongodb+srv://HenryMarsden:Mollymarsden1@buildingsystems.8hiaa.mongodb.net/BuildingSystems?retryWrites=true&w=majority";
 

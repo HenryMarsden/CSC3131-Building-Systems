@@ -1,14 +1,13 @@
 import mongoose from 'mongoose';
 
 const userSchema = mongoose.Schema({
-    registrationNumber: Number,
-    name: String,
+    regNo: Number,
+    userName: String,
     grade: String,
     section: {
         type: String,
         default: 'A'
-    },
-    subjects:[String]
+    }
 });
 
 const user = mongoose.model('user', userSchema);
