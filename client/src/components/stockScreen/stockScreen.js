@@ -1,49 +1,71 @@
-import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-//tabel components
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-//axios
-import Paper from '@mui/material/Paper';
-import axios from 'axios';
-import { Box } from '@mui/system';
-//typography
-import useStyles from '../../styles';
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+import React from 'react';
+import Plot from 'react-plotly.js';
 
-export default function Find(){
-  const classes = useStyles();
-  var stockData = '';
-
-  const searchStock = () => {
-    const finnhub = require('finnhub');
-
-    const api_key = finnhub.ApiClient.instance.authentications['api_key'];
-    api_key.apiKey = "c6gf6qqad3iegn0iq5o0"
-    const finnhubClient = new finnhub.DefaultApi()
-
-    finnhubClient.symbolSearch('GOOG', (error, data, response) => {
-      console.log(data)
-      stockData = data;
-    });
+class Stock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stockChartXValues: [],
+      stockChartYValues: []
+    }
   }
 
-  return(
-    <Container>
-      <Stack spacing={2} direction="row">
-        <Button variant="outlined" onClick={searchStock}>Outlined</Button>
-      </Stack>
-      <Stack spacing={2} direction="row">
-      <AppBar className={classes.appBar} position='static' color='inherit'>
-          <Typography className={classes.heading} variant='body1' align='center'> {stockData} </Typography>
-        </AppBar>
-      </Stack>
-    </Container>
-  );
+  componentDidMount() {
+    this.fetchStock();
+  }
+
+  fetchStock() {
+    const pointerToThis = this;
+    console.log(pointerToThis);
+    const API_KEY = 'HGJWFG4N8AQ66ICD';
+    let StockSymbol = 'FB';
+    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbol}&outputsize=compact&apikey=${API_KEY}`;
+    let stockChartXValuesFunction = [];
+    let stockChartYValuesFunction = [];
+
+    fetch(API_Call)
+      .then(
+        function(response) {
+          return response.json();
+        }
+      )
+      .then(
+        function(data) {
+          console.log(data);
+
+          for (var key in data['Time Series (Daily)']) {
+            stockChartXValuesFunction.push(key);
+            stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['1. open']);
+          }
+
+          // console.log(stockChartXValuesFunction);
+          pointerToThis.setState({
+            stockChartXValues: stockChartXValuesFunction,
+            stockChartYValues: stockChartYValuesFunction
+          });
+        }
+      )
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Stock Market</h1>
+        <Plot
+          data={[
+            {
+              x: this.state.stockChartXValues,
+              y: this.state.stockChartYValues,
+              type: 'scatter',
+              mode: 'lines+markers',
+              marker: {color: 'red'},
+            }
+          ]}
+          layout={{width: 720, height: 440, title: 'A Fancy Plot'}}
+        />
+      </div>
+    )
+  }
 }
+
+export default Stock;
