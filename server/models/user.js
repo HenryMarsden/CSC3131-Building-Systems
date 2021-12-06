@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 
+//user schema
 const userSchema = mongoose.Schema({
     regNo: Number,
-    userName: String,
+    userName: String, 
     grade: String,
     section: {
         type: String,

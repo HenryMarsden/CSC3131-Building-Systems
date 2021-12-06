@@ -1,71 +1,61 @@
-import React from 'react';
-import Plot from 'react-plotly.js';
+import React, { useState } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+//tabel components
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+//axios
+import Paper from '@mui/material/Paper';
+import axios from 'axios';
+import { Box } from '@mui/system';
+//typography
+import useStyles from '../../styles';
+import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 
-class Stock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      stockChartXValues: [],
-      stockChartYValues: []
-    }
+export default function Find(){
+  const classes = useStyles();
+
+
+  const [stock, setStock] = useState({
+    ticker: ''
+  });
+
+
+  const getTime = (ticker) => {
+    axios.get(`http://localhost:5000/stocks/${ticker}`).then( (response) => {
+      //isOpen = respose;
+      window.location.reload(false);
+    })
   }
 
-  componentDidMount() {
-    this.fetchStock();
-  }
+  return(
+    <>
+    <h2>Find Stock</h2>
+    <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField id="outlined-basic" label="Ticker" variant="outlined" value={stock.ticker} onChange={(event) => {
+        setStock({ ...stock, ticker: event.target.value})
+      }} 
+      />
 
-  fetchStock() {
-    const pointerToThis = this;
-    console.log(pointerToThis);
-    const API_KEY = 'HGJWFG4N8AQ66ICD';
-    let StockSymbol = 'FB';
-    let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbol}&outputsize=compact&apikey=${API_KEY}`;
-    let stockChartXValuesFunction = [];
-    let stockChartYValuesFunction = [];
+      <Button variant="contained" onClick={getTime(stock.ticker)}>
+        Search
+      </Button>
+    </Box>
+    </>
 
-    fetch(API_Call)
-      .then(
-        function(response) {
-          return response.json();
-        }
-      )
-      .then(
-        function(data) {
-          console.log(data);
-
-          for (var key in data['Time Series (Daily)']) {
-            stockChartXValuesFunction.push(key);
-            stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['1. open']);
-          }
-
-          // console.log(stockChartXValuesFunction);
-          pointerToThis.setState({
-            stockChartXValues: stockChartXValuesFunction,
-            stockChartYValues: stockChartYValuesFunction
-          });
-        }
-      )
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Stock Market</h1>
-        <Plot
-          data={[
-            {
-              x: this.state.stockChartXValues,
-              y: this.state.stockChartYValues,
-              type: 'scatter',
-              mode: 'lines+markers',
-              marker: {color: 'red'},
-            }
-          ]}
-          layout={{width: 720, height: 440, title: 'A Fancy Plot'}}
-        />
-      </div>
-    )
-  }
+    
+  );
 }
-
-export default Stock;
