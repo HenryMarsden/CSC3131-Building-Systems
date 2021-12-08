@@ -26,11 +26,13 @@ export default function Find(){
     ticker: ''
   });
 
+  //var price = 0;
 
   const getTime = (ticker) => {
-    axios.get(`http://localhost:5000/stocks/${ticker}`).then( (response) => {
-      //isOpen = respose;
-      window.location.reload(false);
+    axios.get(`http://localhost:5000/stocks/${ticker}`).then( (stockData) => {
+      //price = stockData.price;
+      console.log('hello');
+      console.log(stockData);
     })
   }
 

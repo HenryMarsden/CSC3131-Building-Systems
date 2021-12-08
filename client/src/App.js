@@ -2,8 +2,8 @@
 import React from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 import './App.css';
-import User from './components/showUser/showUser.js';
-import Create from './components/createUser/createUser.js';
+import StockShow from './components/showUser/showUser.js';
+import AddStock from './components/createUser/createUser.js';
 import FindStock from './components/stockScreen/stockScreen.js';
 //import { mergeClasses } from '@material-ui/styles';
 import useStyles from './styles';
@@ -15,7 +15,7 @@ function App() {
     <div className="App">
      <Container maxWidth='lg'>
       <AppBar className={classes.appBar} position='static' color='inherit'>
-        <Typography className={classes.heading} variant='h3' align='center'> User Create and Show</Typography>
+        <Typography className={classes.heading} variant='h3' align='center'> Stock Search and Tracker</Typography>
       </AppBar>
 
       <Grow in>
@@ -23,12 +23,12 @@ function App() {
           <Grid container justify='space-between' alignItems='stretch'>
             <Grid item xs={12} sm={7}>
               <AppBar className={classes.appBar} position='static' color='inherit'>
-                <User />
+                <StockShow />
               </AppBar>
             </Grid>
             <Grid item xs={12} sm={4}>
               <AppBar className={classes.appBar} position='static' color='inherit'>
-                <Create />
+                <AddStock />
               </AppBar>
             </Grid>
           </Grid>

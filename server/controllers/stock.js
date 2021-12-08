@@ -7,7 +7,7 @@ export const getTime = async (req, res)=>{
 
     const TICKER = req.params.ticker;
 
-    var url = `https://www.alphavantage.co/query?function=EARNINGS&symbol=${TICKER}&apikey=63Y97MAMKGF76KSZ`;
+    var url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${TICKER}&apikey=63Y97MAMKGF76KSZ`;
     var stockData;
 
     try {

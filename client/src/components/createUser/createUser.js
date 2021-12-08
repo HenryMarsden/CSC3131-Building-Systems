@@ -21,7 +21,7 @@ export default function Create() {
 
   return (
     <>
-    <h2>Create User</h2>
+    <h2>Add Stock</h2>
     <Box
       component="form"
       sx={{
@@ -30,21 +30,21 @@ export default function Create() {
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Registration No." variant="outlined" value={user.regNo} onChange={(event) => {
+      <TextField id="outlined-basic" label="Ticker" variant="outlined" value={user.regNo} onChange={(event) => {
         setUser({ ...user, regNo: event.target.value})
       }} />
-      <TextField id="outlined-basic" label="Name" variant="outlined" value={user.userName} onChange={(event) => {
+      <TextField id="outlined-basic" label="Price" variant="outlined" value={user.userName} onChange={(event) => {
         setUser({ ...user, userName: event.target.value})
       }}/>
-      <TextField id="outlined-basic" label="Grade" variant="outlined" value={user.grade} onChange={(event) => {
+      <TextField id="outlined-basic" label="Earnings" variant="outlined" value={user.grade} onChange={(event) => {
         setUser({ ...user, grade: event.target.value})
       }}/>
-      <TextField id="outlined-basic" label="Section" variant="outlined" value={user.section} onChange={(event) => {
+      <TextField id="outlined-basic" label="P/E" variant="outlined" value={user.section} onChange={(event) => {
         setUser({ ...user, section: event.target.value})
       }}/>
 
       <Button variant="contained" onClick={createUser}>
-        Create
+        Add
       </Button>
     </Box>
     </>

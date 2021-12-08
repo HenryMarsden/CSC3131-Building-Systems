@@ -28,15 +28,15 @@ useEffect(() => {
 
   return (
     <>
-    <h2>All Users</h2>
+    <h2>All Stocks</h2>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Registration Number</TableCell>
-            <TableCell align="right">Grade</TableCell>
-            <TableCell align="right">Section</TableCell>
+            <TableCell>Ticker</TableCell>
+            <TableCell align="right">Price</TableCell>
+            <TableCell align="right">Earnings</TableCell>
+            <TableCell align="right">P/E</TableCell>
             <TableCell align="right">Action</TableCell>
           </TableRow>
         </TableHead>
