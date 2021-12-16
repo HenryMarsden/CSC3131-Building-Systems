@@ -15,11 +15,11 @@ import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { Box } from '@mui/system';
 //typography
-import useStyles from '../../styles';
+//import useStyles from '../../styles';
 //import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 
 export default function Find(){
-  const classes = useStyles();
+  //const classes = useStyles();
 
 
   const [stock, setStock] = useState({
