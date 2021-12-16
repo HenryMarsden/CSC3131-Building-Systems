@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+//import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
+//import Stack from '@mui/material/Stack';
 //tabel components
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+// import Table from '@mui/material/Table';
+// import TableBody from '@mui/material/TableBody';
+// import TableCell from '@mui/material/TableCell';
+// import TableContainer from '@mui/material/TableContainer';
+// import TableHead from '@mui/material/TableHead';
+// import TableRow from '@mui/material/TableRow';
 //axios
-import Paper from '@mui/material/Paper';
+//import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import { Box } from '@mui/system';
 //typography
 import useStyles from '../../styles';
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
+//import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 
 export default function Find(){
   const classes = useStyles();
