@@ -13,7 +13,12 @@ npm start
 DOCKER:
 docker compose up
 
+GIT:
+git commit
+git push
 
 To start the front end follow the steps listed, the same for the back end
 
 To containerise and run the container use the command listed under Docker
+
+To push to GitHub use the commands listed under git
