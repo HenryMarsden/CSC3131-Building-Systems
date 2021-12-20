@@ -50,7 +50,6 @@ app.use("/stocks", stockRoutes);
 
 // establishes connection to MONGODB
 const CONNECTION_URL = "mongodb+srv://HenryMarsden:Mollymarsden1@buildingsystems.8hiaa.mongodb.net/BuildingSystems?retryWrites=true&w=majority";
-
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, {

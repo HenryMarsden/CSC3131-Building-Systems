@@ -1,6 +1,3 @@
-import alpaca from "../models/alpaca.js";
-import dateFns from "date-fns";
-import formatToTimeZone from  "date-fns-timezone";
 import request from "request";
 
 export const getTime = async (req, res)=>{

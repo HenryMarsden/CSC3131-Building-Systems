@@ -1,0 +1,19 @@
+To build the project two terminals should be opened one in the front end one in the back end:
+
+FRONT END:
+cd client
+npm install
+npm start
+
+BACK END:
+cd server
+npm install
+npm start
+
+DOCKER:
+docker compose up
+
+
+To start the front end follow the steps listed, the same for the back end
+
+To containerise and run the container use the command listed under Docker
